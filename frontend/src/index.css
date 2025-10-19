@@ -1,0 +1,33 @@
+/* === RESETEO GLOBAL === */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ✅ Elimina el flexbox del body que causaba el centrado */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0b1220; /* mismo tono base de tu tema */
+  color: #e5e7eb;
+  display: block;
+}
+
+/* Links básicos (por si acaso) */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Botones base */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}

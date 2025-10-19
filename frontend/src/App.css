@@ -1,0 +1,334 @@
+/* === Variables de tema === */
+:root {
+  --bg: #0b1220;
+  --panel: #0f172a;
+  --panel-2: #111827;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --primary: #2563eb;
+  --primary-600: #1d4ed8;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --border: #1f2937;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  --radius: 16px;
+}
+
+/* === Reset === */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; }
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+  background: linear-gradient(180deg, var(--bg) 0%, #0a0f1a 100%);
+  color: var(--text);
+}
+
+/* === NAVBAR SUPERIOR === */
+.admin-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.admin-navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 5vw;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: background 0.25s ease;
+}
+
+.navbar-links a:hover {
+  background: rgba(37, 99, 235, 0.15);
+}
+
+.navbar-links .active {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.4);
+}
+
+/* === BOTÓN DE LOGOUT === */
+.logout-button {
+  background: transparent;
+  color: #fecaca;
+  border: 1px solid rgba(239, 68, 68, .35);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.logout-button:hover {
+  background: rgba(239,68,68,.1);
+  transform: translateY(-1px);
+}
+
+/* === CONTENIDO PRINCIPAL === */
+.admin-content {
+  width: 100%;
+  display: block; /* ✅ FIX: permite que el contenido ocupe todo el ancho */
+  padding: 40px 5vw;
+  min-height: calc(100vh - 80px);
+  background: radial-gradient(1200px 800px at 10% -10%, rgba(37,99,235,.15), transparent 60%),
+              radial-gradient(1000px 700px at 110% 10%, rgba(34,197,94,.14), transparent 55%),
+              var(--bg);
+}
+
+/* === TARJETAS Y FORMULARIOS === */
+.data-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.data-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.data-card h3 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.cita-form {
+  display: grid;
+  gap: 12px;
+}
+
+input, select {
+  background: rgba(17,24,39,.65);
+  border: 1px solid rgba(148,163,184,.18);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  width: 100%;
+  transition: border .15s ease, box-shadow .15s ease;
+}
+
+input::placeholder { color: var(--muted); }
+
+input:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.25);
+}
+
+.action-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-button.primary { background-color: #3498db; color: #fff; }
+.action-button.success { background-color: #27ae60; color: #fff; }
+.action-button:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* === LOGIN CENTRADO === */
+.auth-container {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(800px 500px at 20% -10%, rgba(37,99,235,.2), transparent 60%),
+              radial-gradient(900px 600px at 120% 10%, rgba(34,197,94,.18), transparent 55%),
+              var(--bg);
+}
+
+.auth-card {
+  width: min(420px, 92vw);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 28px;
+  text-align: center;
+}
+
+.auth-card form { display: grid; gap: 12px; }
+
+.auth-card input {
+  background: rgba(17,24,39,.65);
+  border: 1px solid rgba(148,163,184,.18);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.auth-card input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.25);
+}
+
+.error-message {
+  color: #fecaca;
+  background: rgba(239,68,68,.1);
+  border: 1px solid rgba(239,68,68,.3);
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+/* === LAYOUT DE PÁGINAS INTERNAS === */
+.page-layout {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.sub-sidebar, .page-content {
+  width: 100%;
+  text-align: center;
+}
+
+.page-content .data-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.placeholder {
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 20px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .admin-navbar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .navbar-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logout-button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .admin-content {
+    padding: 20px;
+  }
+
+  .page-layout {
+    flex-direction: column;
+    padding: 0 16px;
+  }
+}
+
+/* === PANTALLAS GRANDES === */
+@media (min-width: 1024px) {
+  .page-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .sub-sidebar {
+    flex: 1;
+    max-width: 340px;
+  }
+  .page-content {
+    flex: 2;
+    text-align: left;
+  }
+}
+/* === PANEL ADMIN - TARJETAS EN FILA === */
+.admin-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* permite que bajen si no caben */
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.admin-grid .data-card {
+  flex: 1 1 400px; /* ancho mínimo 400px, se adapta */
+  max-width: 600px;
+}
+
+/* === LISTA DE PACIENTES MEJORADA === */
+.paciente-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+.paciente-item {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.paciente-item:hover {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
