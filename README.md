@@ -1,134 +1,136 @@
-# Sistema de Gestión Hospitalaria (SGH)
+# Sistema de Gestión Hospitalaria (SGH) 🏥
 
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)
-![Java](https://img.shields.io/badge/Java-17-blue)
-![Maven](https://img.shields.io/badge/Maven-4.0-red)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=spring)
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-5.x-purple?logo=vite)
+![Java](https://img.shields.io/badge/Java-17+-orange?logo=java)
+![MySQL](https://img.shields.io/badge/MySQL-8.x-blue?logo=mysql)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-El **Sistema de Gestión Hospitalaria (SGH)** es una aplicación backend robusta que provee una API RESTful para administrar de manera centralizada las operaciones principales de un centro médico.
+El **Sistema de Gestión Hospitalaria (SGH)** es una aplicación full-stack diseñada para administrar de manera centralizada las operaciones de un centro médico. Provee una API RESTful robusta construida con **Spring Boot** y un frontend dinámico e interactivo desarrollado con **React**.
 
 ---
 ## 📋 Módulos Implementados
 
-Este proyecto implementa los siguientes módulos, cubriendo el flujo completo de atención al paciente:
+Este proyecto cubre el flujo completo de atención al paciente a través de los siguientes módulos:
 
 -   ✅ **Gestión de Pacientes**: Registro, actualización y consulta de datos de pacientes y su historia clínica.
 -   ✅ **Médicos y Especialidades**: Administración del personal médico y sus áreas de especialización.
--   ✅ **Citas Médicas**: Programación, reprogramación y cancelación de citas.
--   ✅ **Consultas y Diagnósticos**: Registro detallado del acto médico, diagnósticos y recetas.
+-   ✅ **Citas Médicas**: Programación, reprogramación y gestión de estados de citas (Programada, Atendida).
+-   ✅ **Consultas y Diagnósticos**: Registro detallado del acto médico, incluyendo diagnósticos.
 -   ✅ **Hospitalización**: Gestión de habitaciones y control de ingresos y altas de pacientes.
--   ✅ **Facturación**: Generación de facturas por los servicios prestados y seguimiento de pagos.
--   ✅ **Administración y Seguridad**: Creación de usuarios con roles y una bitácora para auditoría de acciones.
+-   ✅ **Facturación**: Generación de facturas por servicios y seguimiento de pagos.
+-   ✅ **Administración y Seguridad**: Creación de usuarios con roles (`recepcionista`, `admin`) y un panel de control para operaciones clave.
 
 ---
 ## 🛠️ Stack Tecnológico
 
+### **Backend**
 -   **Framework**: Spring Boot 3
--   **Lenguaje**: Java 21
+-   **Lenguaje**: Java 17+
 -   **Acceso a Datos**: Spring Data JPA / Hibernate
 -   **Base de Datos**: MySQL
 -   **Gestor de Dependencias**: Maven
 -   **Librerías Adicionales**: Lombok
 
----
-## 🚀 Puesta en Marcha
+### **Frontend**
+-   **Framework/Librería**: React 18
+-   **Herramienta de Build**: Vite
+-   **Cliente HTTP**: Axios
+-   **Enrutamiento**: React Router DOM
 
-Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
+---
+## 🚀 Puesta en Marcha (Desarrollo Local)
+
+Para ejecutar este proyecto completo en tu entorno local, sigue los pasos para el backend y el frontend.
 
 ### **Prerrequisitos**
-
 -   JDK 17 o superior.
--   Apache Maven.
--   Un IDE de tu preferencia (IntelliJ IDEA, Eclipse, VSCode).
--   XAMPP (o cualquier otro gestor de MySQL).
--   Postman (o un cliente API similar para pruebas).
+-   Node.js y npm.
+-   Un IDE para Java (ej. IntelliJ IDEA, Eclipse).
+-   Un editor de código para JavaScript (ej. VS Code).
+-   XAMPP o un servidor MySQL independiente.
 
-### **Configuración**
+---
+### **1. Configuración del Backend (API)**
 
 1.  **Clona el repositorio**:
     ```bash
-    git clone https://github.com/sesema98/GestionHospitalaria.git
+    git clone [https://github.com/sesema98/GestionHospitalaria.git](https://github.com/sesema98/GestionHospitalaria.git)
+    cd GestionHospitalaria # O el nombre de la carpeta raíz del proyecto
     ```
 
-2.  **Abre el proyecto** en tu IDE. Maven se encargará de descargar todas las dependencias necesarias.
+2.  **Inicia la Base de Datos**:
+    -   Abre el panel de control de XAMPP e inicia el servicio de **MySQL**.
+    -   Abre **phpMyAdmin** y crea una nueva base de datos llamada `hospitaldb`.
 
-3.  **Inicia la Base de Datos**:
-    -   Abre el panel de control de XAMPP.
-    -   Inicia los servicios de **Apache** y **MySQL**.
-
-4.  **Configura la conexión**: El archivo `src/main/resources/application.properties` ya está configurado para conectarse a una base de datos local.
+3.  **Configura la Conexión**: El archivo `src/main/resources/application.properties` ya está preconfigurado.
     ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/hospitaldb?createDatabaseIfNotExist=true
+    spring.datasource.url=jdbc:mysql://localhost:3306/hospitaldb
     spring.datasource.username=root
     spring.datasource.password=
-    spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
     spring.jpa.hibernate.ddl-auto=update
     ```
-    La base de datos `hospitaldb` y todas las tablas se crearán automáticamente la primera vez que ejecutes la aplicación.
+    La propiedad `ddl-auto=update` creará las tablas automáticamente la primera vez que se ejecute.
 
-5.  **Ejecuta la aplicación**:
-    -   Navega a la clase `GestionHospitalariaApplication.java`.
-    -   Haz clic derecho y selecciona "Run". El servidor se iniciará en `http://localhost:8080`.
-
----
-## 📖 Documentación de la API
-
-A continuación se detallan los endpoints más importantes de cada módulo.
-
-### **Módulo de Pacientes**
-| Método HTTP | Endpoint                  | Descripción                      |
-| :---------- | :------------------------ | :------------------------------- |
-| `POST`      | `/api/pacientes`          | Registra un nuevo paciente.      |
-| `GET`       | `/api/pacientes`          | Lista todos los pacientes.       |
-| `GET`       | `/api/pacientes/{id}`     | Obtiene un paciente por su ID.   |
-| `PUT`       | `/api/pacientes/{id}`     | Actualiza los datos de un paciente.|
-| `DELETE`    | `/api/pacientes/{id}`     | Desactiva el estado de un paciente.|
-
-### **Módulo de Médicos y Citas**
-| Método HTTP | Endpoint                                | Descripción                      |
-| :---------- | :-------------------------------------- | :------------------------------- |
-| `POST`      | `/api/especialidades`                   | Crea una nueva especialidad médica. |
-| `POST`      | `/api/medicos`                          | Registra un nuevo médico.          |
-| `POST`      | `/api/medicos/{mId}/especialidad/{eId}` | Asigna una especialidad a un médico.|
-| `POST`      | `/api/citas`                            | Agenda una nueva cita médica.      |
-| `PUT`       | `/api/citas/{id}/cancelar`              | Cambia el estado de una cita a "Cancelada". |
-
-### **Módulo de Consultas**
-| Método HTTP | Endpoint          | Descripción                                 |
-| :---------- | :---------------- | :------------------------------------------ |
-| `POST`      | `/api/consultas`  | Registra una consulta completa (diagnóstico y receta). |
-| `GET`       | `/api/consultas/{id}` | Obtiene los detalles de una consulta.       |
-
-### **Módulo de Hospitalización**
-| Método HTTP | Endpoint                           | Descripción                                     |
-| :---------- | :--------------------------------- | :---------------------------------------------- |
-| `POST`      | `/api/habitaciones`                | Crea una nueva habitación.                      |
-| `GET`       | `/api/habitaciones/disponibles`    | Lista las habitaciones con estado "disponible". |
-| `POST`      | `/api/hospitalizaciones/ingresar`  | Registra el ingreso de un paciente.             |
-| `PUT`       | `/api/hospitalizaciones/{id}/alta` | Registra el alta de un paciente.                |
-
-### **Módulo de Facturación**
-| Método HTTP | Endpoint                  | Descripción                                  |
-| :---------- | :------------------------ | :------------------------------------------- |
-| `POST`      | `/api/facturas`           | Crea una nueva factura para un paciente.     |
-| `PUT`       | `/api/facturas/{id}/pagar`| Cambia el estado de una factura a "pagado".  |
-
-### **Módulo de Seguridad**
-| Método HTTP | Endpoint                  | Descripción                                  |
-| :---------- | :------------------------ | :------------------------------------------- |
-| `POST`      | `/api/usuarios/registrar` | Registra un nuevo usuario en el sistema.     |
+4.  **Ejecuta el Backend**:
+    -   Abre la carpeta del backend en tu IDE de Java.
+    -   Ejecuta la clase principal `GestionHospitalariaApplication.java`.
+    -   El servidor se iniciará en `http://localhost:8080`.
 
 ---
-## 🧪 Cómo Probar
+### **2. Configuración del Frontend (React)**
 
-Se recomienda utilizar **Postman** para probar la API. Puedes seguir el flujo lógico descrito en la documentación de endpoints para simular un caso de uso completo:
-1.  Crear usuarios, médicos y habitaciones.
-2.  Registrar un nuevo paciente.
-3.  Agendar una cita para el paciente.
-4.  Registrar la consulta derivada de la cita.
-5.  (Opcional) Hospitalizar y dar de alta al paciente.
-6.  Generar una factura por los servicios.
-7.  Pagar la factura.
+1.  **Navega a la carpeta del frontend**: Desde la raíz del proyecto, entra a la carpeta del frontend (ej. `hospital-frontend`).
+    ```bash
+    cd hospital-frontend
+    ```
+
+2.  **Instala las dependencias**:
+    ```bash
+    npm install
+    ```
+
+3.  **Ejecuta el Frontend**:
+    ```bash
+    npm run dev
+    ```
+    -   La aplicación React se iniciará en `http://localhost:5173`.
+    -   Abre esta URL en tu navegador para ver la interfaz de inicio de sesión.
 
 ---
-Desarrollado con la asistencia de Gemini. 🤖
+## 📖 Documentación de la API (Endpoints Clave)
+
+### **Autenticación y Usuarios**
+| Método | Endpoint                  | Descripción                      |
+|:-------|:--------------------------|:---------------------------------|
+| `POST` | `/api/usuarios/login`     | Inicia sesión con un usuario.    |
+| `POST` | `/api/usuarios/registrar` | Registra un nuevo usuario.       |
+
+### **Gestión de Pacientes**
+| Método   | Endpoint                      | Descripción                                      |
+|:---------|:------------------------------|:-------------------------------------------------|
+| `POST`   | `/api/pacientes`              | Registra un nuevo paciente (con antecedentes).  |
+| `GET`    | `/api/pacientes`              | Lista todos los pacientes.                       |
+| `GET`    | `/api/pacientes/{id}/citas`   | Obtiene todas las citas de un paciente.          |
+| `GET`    | `/api/pacientes/{id}/consultas`| Obtiene todas las consultas de un paciente.      |
+| `DELETE` | `/api/pacientes/{id}`         | Desactiva el estado de un paciente.              |
+
+### **Gestión de Médicos**
+| Método | Endpoint                      | Descripción                               |
+|:-------|:------------------------------|:------------------------------------------|
+| `POST` | `/api/medicos`                | Registra un nuevo médico (con especialidades). |
+| `GET`  | `/api/medicos`                | Lista todos los médicos.                  |
+| `GET`  | `/api/medicos/{id}/consultas` | Obtiene todas las consultas de un médico. |
+
+### **Acciones y Flujos de Trabajo**
+| Método | Endpoint                              | Descripción                               |
+|:-------|:--------------------------------------|:------------------------------------------|
+| `POST` | `/api/citas`                          | Agenda una nueva cita.                    |
+| `PUT`  | `/api/citas/{id}/atender`             | Cambia el estado de una cita a "Atendida". |
+| `POST` | `/api/consultas`                      | Registra una consulta completa.           |
+| `POST` | `/api/hospitalizaciones/ingresar`     | Registra el ingreso de un paciente.       |
+| `PUT`  | `/api/hospitalizaciones/{id}/alta`    | Registra el alta de un paciente.          |
+| `POST` | `/api/habitaciones`                   | Crea una nueva habitación.                |
+| `POST` | `/api/facturas`                       | Genera una nueva factura.                 |
+| `PUT`  | `/api/facturas/{id}/pagar`            | Cambia el estado de una factura a "Pagada".|
